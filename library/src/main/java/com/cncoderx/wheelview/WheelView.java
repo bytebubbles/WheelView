@@ -373,6 +373,10 @@ public class WheelView extends View {
         invalidate();
     }
 
+    public List<CharSequence> getEntries() {
+        return mEntries;
+    }
+
     public OnWheelChangedListener getOnWheelChangedListener() {
         return mScroller.onWheelChangedListener;
     }
