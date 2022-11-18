@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WheelView.iml" filepath="$PROJECT_DIR$/WheelView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WheelView.iml" filepath="$PROJECT_DIR$/.idea/modules/WheelView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/WheelView.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/WheelView.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/WheelView.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/WheelView.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/WheelView.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/WheelView.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/WheelView.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/WheelView.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/WheelView.library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/WheelView.library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/WheelView.library.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/WheelView.library.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/WheelView.library.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/WheelView.library.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/WheelView.library.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/WheelView.library.unitTest.iml" />
     </modules>
   </component>
 </project>

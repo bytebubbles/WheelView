@@ -1,7 +1,7 @@
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.jfrog.bintray'
 
-def siteUrl = 'https://github.com/CNCoderX/WheelView'
+/*def siteUrl = 'https://github.com/CNCoderX/WheelView'
 def gitUrl = 'https://github.com/CNCoderX/WheelView.git'
 
 version = "1.2.4"
@@ -86,4 +86,4 @@ bintray {
         licenses = ["Apache-2.0"]
         publish = true
     }
-}
+}*/
