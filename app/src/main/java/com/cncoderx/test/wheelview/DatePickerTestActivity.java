@@ -2,6 +2,7 @@ package com.cncoderx.test.wheelview;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.cncoderx.wheelview.OnWheelChangedListener;
@@ -43,6 +44,11 @@ public class DatePickerTestActivity extends Activity {
                 updateDayEntries();
                 updateTextView();
             }
+
+            @Override
+            public void onStateChange(WheelView mWheelView, boolean release, boolean stop) {
+                //Log.d("TAG", "onStateChange: release - " + release + "  stop - " + stop);
+            }
         });
         wvMonth.setOnWheelChangedListener(new OnWheelChangedListener() {
             @Override
@@ -52,6 +58,11 @@ public class DatePickerTestActivity extends Activity {
                 updateDayEntries();
                 updateTextView();
             }
+
+            @Override
+            public void onStateChange(WheelView mWheelView, boolean release, boolean stop) {
+                //Log.d("TAG", "onStateChange: release - " + release + "  stop - " + stop);
+            }
         });
         wvDay.setOnWheelChangedListener(new OnWheelChangedListener() {
             @Override
@@ -59,6 +70,11 @@ public class DatePickerTestActivity extends Activity {
                 String text = (String) wvDay.getItem(newIndex);
                 mDay = Integer.parseInt(text.substring(0, text.length() - 1));
                 updateTextView();
+            }
+
+            @Override
+            public void onStateChange(WheelView mWheelView, boolean release, boolean stop) {
+                //Log.d("TAG", "onStateChange: release - " + release + "  stop - " + stop);
             }
         });
 

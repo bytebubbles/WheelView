@@ -1,6 +1,7 @@
 package com.cncoderx.wheelview;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.widget.Scroller;
@@ -19,6 +20,8 @@ public class WheelScroller extends Scroller {
 
     public static final int JUSTIFY_DURATION = 400;
 
+    private boolean isRelease = true;
+
     public WheelScroller(Context context, WheelView wheelView) {
         super(context);
         mWheelView = wheelView;
@@ -29,9 +32,12 @@ public class WheelScroller extends Scroller {
             isScrolling = computeScrollOffset();
             doScroll(getCurrY() - mScrollOffset);
             if (isScrolling) {
+                notifyWheelStateChangeListener(true, false);
                 mWheelView.postInvalidate();
             } else {
                 // 滚动结束后，重新调整位置
+                notifyWheelStateChangeListener(true, true);
+                //Log.d("TAG", "onStateChange: 1");
                 justify();
             }
         }
@@ -64,6 +70,12 @@ public class WheelScroller extends Scroller {
         }
     }
 
+    private void notifyWheelStateChangeListener(boolean release, boolean stop){
+        if (onWheelChangedListener != null) {
+            onWheelChangedListener.onStateChange(mWheelView, release, stop);
+        }
+    }
+
     public int getCurrentIndex() {
         final int itemHeight = mWheelView.mItemHeight;
         final int itemSize = mWheelView.getItemSize();
@@ -91,6 +103,8 @@ public class WheelScroller extends Scroller {
             startScroll(0, mScrollOffset, 0, distance, JUSTIFY_DURATION);
             mWheelView.invalidate();
         } else {
+            notifyWheelStateChangeListener(true, true);
+            //Log.d("TAG", "onStateChange: 2");
             doScroll(distance);
             mWheelView.invalidate();
         }
@@ -109,6 +123,8 @@ public class WheelScroller extends Scroller {
         mScrollOffset = 0;
         currentIndex = -1;
         notifyWheelChangedListener();
+        notifyWheelStateChangeListener(isRelease, true);
+        //Log.d("TAG", "onStateChange: 3");
         forceFinished(true);
     }
 
@@ -145,6 +161,7 @@ public class WheelScroller extends Scroller {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                isRelease = false;
                 lastTouchY = event.getY();
                 forceFinished(true);
                 break;
@@ -152,12 +169,14 @@ public class WheelScroller extends Scroller {
                 float touchY = event.getY();
                 int deltaY = (int) (touchY - lastTouchY);
                 if (deltaY != 0) {
+                    notifyWheelStateChangeListener(isRelease, false);
                     doScroll(-deltaY);
                     mWheelView.invalidate();
                 }
                 lastTouchY = touchY;
                 break;
             case MotionEvent.ACTION_UP:
+                isRelease = true;
                 mVelocityTracker.computeCurrentVelocity(1000);
                 float velocityY = mVelocityTracker.getYVelocity();
 
@@ -168,6 +187,7 @@ public class WheelScroller extends Scroller {
                 } else {
                     justify();
                 }
+                notifyWheelStateChangeListener(isRelease, false);
             case MotionEvent.ACTION_CANCEL:
                 // 当触发抬起、取消事件后，回收VelocityTracker
                 if (mVelocityTracker != null) {
