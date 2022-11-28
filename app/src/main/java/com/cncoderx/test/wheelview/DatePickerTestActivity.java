@@ -61,7 +61,7 @@ public class DatePickerTestActivity extends Activity {
 
             @Override
             public void onStateChange(WheelView mWheelView, boolean release, boolean stop) {
-                //Log.d("TAG", "onStateChange: release - " + release + "  stop - " + stop);
+                Log.d("TAG", "onStateChange: release - " + release + "  stop - " + stop);
             }
         });
         wvDay.setOnWheelChangedListener(new OnWheelChangedListener() {

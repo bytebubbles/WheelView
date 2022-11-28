@@ -103,9 +103,9 @@ public class WheelScroller extends Scroller {
             startScroll(0, mScrollOffset, 0, distance, JUSTIFY_DURATION);
             mWheelView.invalidate();
         } else {
-            notifyWheelStateChangeListener(true, true);
             //Log.d("TAG", "onStateChange: 2");
             doScroll(distance);
+            notifyWheelStateChangeListener(true, true);
             mWheelView.invalidate();
         }
     }
@@ -169,8 +169,8 @@ public class WheelScroller extends Scroller {
                 float touchY = event.getY();
                 int deltaY = (int) (touchY - lastTouchY);
                 if (deltaY != 0) {
-                    notifyWheelStateChangeListener(isRelease, false);
                     doScroll(-deltaY);
+                    notifyWheelStateChangeListener(isRelease, false);
                     mWheelView.invalidate();
                 }
                 lastTouchY = touchY;
